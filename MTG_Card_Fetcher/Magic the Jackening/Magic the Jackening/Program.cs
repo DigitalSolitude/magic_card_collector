@@ -1,2 +1,2 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, Jackening!");
+﻿Random dice = new Random ();
+Console.WriteLine (dice.Next (1,7));
