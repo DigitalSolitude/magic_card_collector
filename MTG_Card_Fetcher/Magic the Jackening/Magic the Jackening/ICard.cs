@@ -1,6 +1,6 @@
 ﻿namespace Magic_the_Jackening
 {
-    public interface Card
+    public interface ICard
     {
         EManaValue ManaValue;
         string Name;
