@@ -2,20 +2,18 @@
 
 Game
 
-@#JamesyGoringBaby
+@JamesyGoringBaby
 Scenario: Card has a name, mana cost, attributes and rules
 Given I have given a name
 When I press add
 Then the result should be the name on screen.
 
-@mytag
 Scenario Outline: Check Card Properties
 Given I find a card called Shock
-Then it is named '<Name>', Mana Cost is '<Mana Cost>', it has rule's text '<Rules Text>', it has card type - '<Card Type>' and subtype - '<Subtype>'
-
+Then it is named '<Name>', Mana Cost is '<Mana Cost>', it has rule text '<Rules Text>', it has card type '<Card Type>' and subtype '<Subtype>'
 Examples:
-  | Name | Mana Cost | Rules Text | Card Type | Subtype |
-  | Shock    | R         | "Deal 2 damage to any target         | Instant          | None        |
+  | Name  | Mana Cost | Rules Text                   | Card Type | Subtype |
+  | Shock | R         | Deal 2 damage to any target | Instant   | None    |
 
 Scenario: Draw Card
 Given I have 3 cards in hand

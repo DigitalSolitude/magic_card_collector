@@ -2,11 +2,11 @@
 {
     public interface ICard
     {
-        EManaValue ManaValue;
-        string Name;
-        ECardtype CardType;
-        ESubType SubType;
-        string RulesText;
+        string Name { get; }
+        List<EManaType> ManaValue { get; }
+        ECardType CardType { get; }
+        ESubType SubType { get; }
+        string RulesText { get; }
 
     }
 }
