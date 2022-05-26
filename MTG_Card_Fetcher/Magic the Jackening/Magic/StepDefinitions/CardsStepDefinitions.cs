@@ -29,7 +29,7 @@ namespace Magic_the_Jackening
         public void ThenItIsNamedManaCostIsItHasRuleTextItHasCardTypeAndSubtype(string name, List<EManaType> manaValue, string rulesText, ECardType cardType, ESubType subtype = null)
         {
             ICard shock = _scenarioContext.Get<ICard>(nameof(shock));
-            shock.Should().Be(new Card(name, manaValue, cardType, rulesText));
+            shock.Should().BeEquivalentTo(new Card(name, manaValue, cardType, rulesText));
         }
 
 
