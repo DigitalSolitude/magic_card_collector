@@ -1,6 +1,9 @@
 ﻿namespace Magic_the_Jackening
 {
-    public class EPlayer
+    public enum EPlayer
     {
+        Owner,
+        Controller,
+        TargetPlayer,
     }
 }
