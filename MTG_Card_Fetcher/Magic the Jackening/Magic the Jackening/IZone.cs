@@ -9,6 +9,6 @@ namespace Magic_the_Jackening
     internal interface IZone
     {
         public bool Visibility { get; set; }
-        public List<ICard> Cards { get; set; }
+        public static List<ICard>? Cards { get; set; }
     }
 }
