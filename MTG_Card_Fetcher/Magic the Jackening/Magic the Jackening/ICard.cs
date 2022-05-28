@@ -7,6 +7,6 @@
         ECardType CardType { get; }
         ESubType SubType { get; }
         string RulesText { get; }
-
+        bool isTapped { get; }
     }
 }
