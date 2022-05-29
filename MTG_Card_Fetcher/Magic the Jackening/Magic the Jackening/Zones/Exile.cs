@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Magic_the_Jackening.Zones
 {
-    internal class Exile : IZone
+    public class Exile : IZone
     {
         public bool Visibility { get; set; }
-        public List<ICard>? cards { get; set; }
+        public List<ICard>? Cards { get; set; }
+
+        public Exile()
+        {
+            Visibility = true;
+            Cards = new List<ICard>();
+        }
     }
 }

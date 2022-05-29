@@ -1,14 +1,20 @@
-﻿namespace Magic_the_Jackening
+﻿namespace Magic_the_Jackening.Zones
 {
-    internal class Hand : IZone
+    public class Hand : IZone
     {
         public bool Visibility { get; set; }
-        public List <ICard> cards { get; set; }
+        public List<ICard> Cards { get; set; }
 
         public Hand()
         {
             Visibility = true;
-            cards = new List<ICard>();
+            Cards = new List<ICard>();
+        }
+
+        internal ICard Discard(ICard card)
+        {
+            Cards.Remove(card);
+            return card;
         }
     }
 }

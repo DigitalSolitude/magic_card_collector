@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Magic_the_Jackening
 {
-    internal interface IZone
+    public interface IZone
     {
         public bool Visibility { get; set; }
-        public static List<ICard>? cards { get; set; }
+        public static List<ICard>? Cards { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Magic_the_Jackening
                 name: "Shock",
                 manaValue: new List<EManaType> { EManaType.Red },
                 cardType: ECardType.Instant,
-                rulesText: "Deal 2 damage to any target"
+                oracleText: "Deal 2 damage to any target"
                 );
             _scenarioContext.Add(nameof(shock), shock);
         }
@@ -46,11 +46,7 @@ namespace Magic_the_Jackening
             throw new PendingStepException();
         }
 
-        [When(@"I draw a card")]
-        public void WhenIDrawACard()
-        {
-            throw new PendingStepException();
-        }
+        
 
         [Then(@"I have (.*) cards in hand")]
         public void ThenIHaveCardsInHand(int p0)

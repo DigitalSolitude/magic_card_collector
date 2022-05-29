@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Magic_the_Jackening.Zones
 {
-    internal class CommandZone : IZone
+    public class CommandZone : IZone
     {
         public bool Visibility { get; set; }
-        public List<ICard>? cards { get; set; }
+        public List<ICard>? Cards { get; set; }
         public int timesCommanderCast { get; set; }
     }
 }

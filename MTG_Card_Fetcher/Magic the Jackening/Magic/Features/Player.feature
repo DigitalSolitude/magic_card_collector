@@ -1,9 +1,9 @@
 ﻿Feature: Player
 
-Game
+Background: I am a player
+And I on a battlefield
 
 Scenario: I have zones
-Given I am a player
 Then I have a hand, library, graveyard, exile zone
 
 Scenario Outline: I can add any mana to my mana pool

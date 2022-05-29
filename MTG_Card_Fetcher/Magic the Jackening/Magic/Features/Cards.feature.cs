@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Magic.Features
+namespace MagicTests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -29,7 +29,7 @@ namespace Magic.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "Test.feature"
+#line 1 "Cards.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -65,7 +65,7 @@ namespace Magic.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Cards")))
             {
-                global::Magic.Features.CardsFeature.FeatureSetup(null);
+                global::MagicTests.Features.CardsFeature.FeatureSetup(null);
             }
         }
         

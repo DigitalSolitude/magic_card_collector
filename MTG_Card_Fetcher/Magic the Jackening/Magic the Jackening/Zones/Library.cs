@@ -1,25 +1,26 @@
-﻿namespace Magic_the_Jackening
+﻿namespace Magic_the_Jackening.Zones
 {
-    internal class Library : IZone
+    public class Library : IZone
     {
         public bool Visibility { get; set; }
-        public static List<ICard>? cards = stack?.ToList();
-        public static Stack<ICard>? stack { get; set; }
+        public List<ICard>? Cards = new();
+        public Stack<ICard>? Stack { get; set; }
 
         public Library()
         {
             Visibility = true;
-            stack = new Stack<ICard>();
+            Stack = new Stack<ICard>();
+            Cards = Stack?.ToList();
         }
-        
+
         public Stack<ICard> ListToStack(List<ICard> list)
         {
             return (Stack<ICard>)list.Cast<ICard>();
         }
 
-        private ICard DrawFrom()
+        public ICard TakeTopCard()
         {
-            _ = stack.TryPop(out var card);
+            _ = Stack.TryPop(out var card);
             if (card == null) throw new MagicExceptions.DrawFromEmptyLibrary();
             return card;
         }

@@ -3,10 +3,10 @@
     public interface ICard
     {
         string Name { get; }
-        List<EManaType> ManaValue { get; }
+        List<EManaType> ManaCost { get; }
         ECardType CardType { get; }
         ESubType SubType { get; }
-        string RulesText { get; }
-        bool isTapped { get; }
+        string OracleText { get; }
+        bool isTapped { get; set; }
     }
 }
