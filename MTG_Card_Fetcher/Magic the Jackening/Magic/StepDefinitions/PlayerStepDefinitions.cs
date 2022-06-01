@@ -201,6 +201,24 @@ namespace MagicTests.StepDefinitions
             _scenarioContext[nameof(battlefield)] = battlefield;
         }
 
+        [When(@"I create a card with name '([^']*)'")]
+        public void WhenICreateACardWithName(string name)
+        {
+            List<ICard> cards = new List<ICard>();
+            CardImporter cardImporter = new CardImporter();
+            cards = cardImporter.LoadCardsFromJson();
+            var createdCard = cards.FindCardByName(name);
+            _scenarioContext.Add(nameof(createdCard), createdCard);
+        }
+
+        [Then(@"I can create that card with name '([^']*)'")]
+        public void ThenICanCreateThatCard(string name)
+        {
+            ICard createdCard = _scenarioContext.Get<ICard>(nameof(createdCard));
+            Assert.AreEqual(createdCard.Name, name);
+        }
+
+
         [Given(@"the card '([^']*)' is in hand")]
         public void GivenTheCardIsInHand(string shock)
         {

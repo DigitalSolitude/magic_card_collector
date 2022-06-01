@@ -22,6 +22,14 @@ When I draw a card
 Then I have 4 cards in hand 
 And 49 cards in my library
 
+Scenario Outline: I can load cards from a JSON
+When I create a card with name '<Name>'
+Then I can create that card with name '<Name>'
+Examples: 
+| Name           |
+| Shock          |
+| Counterspell   |
+| Llanowar Elves |
 
 
 
