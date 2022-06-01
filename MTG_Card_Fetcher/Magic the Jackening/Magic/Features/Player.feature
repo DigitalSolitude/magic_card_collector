@@ -80,3 +80,5 @@ Scenario: I can interact with the stack
 Given there is a spell on the stack
 When I play a spell that counters that spell
 Then I can counter that spell
+
+#Exiling Cards in Hand, Adding Cards to Hand from Graveyard, Adding Cards to Hand from Exile, Playing a Card from Exile. 

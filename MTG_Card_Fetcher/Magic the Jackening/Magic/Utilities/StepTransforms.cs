@@ -16,7 +16,7 @@ namespace Magic.Support
             List<EManaType> manaTypes = new();
             foreach (char c in manaType)
             {
-                EManaType mana = new ();
+                EManaType mana = EManaType.None;
                 if (c.ToString() == "R") mana = EManaType.Red;
                 if (c.ToString() == "W") mana = EManaType.White;
                 if (c.ToString() == "G") mana = EManaType.Green;
@@ -28,7 +28,10 @@ namespace Magic.Support
                 {
                     manaTypes.Add(EManaType.Generic);
                 }
-                manaTypes.Add(mana);
+                if (mana != EManaType.None)
+                {
+                    manaTypes.Add(mana);
+                }
             }
             return manaTypes;
         }

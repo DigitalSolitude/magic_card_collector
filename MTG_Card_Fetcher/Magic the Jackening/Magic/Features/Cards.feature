@@ -9,11 +9,12 @@ When I press add
 Then the result should be the name on screen.
 
 Scenario Outline: Check Card Properties
-Given I find a card called Shock
+Given I find a card called '<Name>'
 Then it is named '<Name>', Mana Cost is '<Mana Cost>', it has rule text '<Rules Text>', it has card type '<Card Type>' and subtype '<Subtype>'
 Examples:
-  | Name  | Mana Cost | Rules Text                   | Card Type | Subtype |
-  | Shock | R         | Deal 2 damage to any target | Instant   | None    |
+  | Name          | Mana Cost | Rules Text                                  | Card Type | Subtype |
+  | Shock         | R         | Deal 2 damage to any target                 | Instant   | None    |
+  | Shivan Dragon | 4RR       | R: {this card} gets +1/+0 until end of turn | Creature  | None    |
 
 Scenario: Draw Card
 Given I have 3 cards in hand

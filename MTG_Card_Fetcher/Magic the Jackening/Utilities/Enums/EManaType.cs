@@ -2,6 +2,7 @@
 {
     public enum EManaType
     {
+        None,
         Black,
         Blue,
         Green,

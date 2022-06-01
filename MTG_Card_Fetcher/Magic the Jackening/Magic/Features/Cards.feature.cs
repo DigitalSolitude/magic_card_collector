@@ -145,7 +145,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 12
-testRunner.Given("I find a card called Shock", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I find a card called \'{0}\'", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
 testRunner.Then(string.Format("it is named \'{0}\', Mana Cost is \'{1}\', it has rule text \'{2}\', it has card type \'" +
@@ -172,6 +172,22 @@ this.CheckCardProperties("Shock", "R", "Deal 2 damage to any target", "Instant",
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Check Card Properties: Shivan Dragon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Cards")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Shivan Dragon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "Shivan Dragon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Mana Cost", "4RR")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Rules Text", "R: {this card} gets +1/+0 until end of turn")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Card Type", "Creature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Subtype", "None")]
+        public void CheckCardProperties_ShivanDragon()
+        {
+#line 11
+this.CheckCardProperties("Shivan Dragon", "4RR", "R: {this card} gets +1/+0 until end of turn", "Creature", "None", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Draw Card")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Cards")]
         public void DrawCard()
@@ -179,7 +195,7 @@ this.CheckCardProperties("Shock", "R", "Deal 2 damage to any target", "Instant",
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Draw Card", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -189,19 +205,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 20
 testRunner.Given("I have 3 cards in hand", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 21
 testRunner.And("I have 50 cards in my library", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 22
 testRunner.When("I draw a card", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 23
 testRunner.Then("I have 4 cards in hand", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 23
+#line 24
 testRunner.And("49 cards in my library", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -214,7 +230,7 @@ testRunner.And("49 cards in my library", ((string)(null)), ((TechTalk.SpecFlow.T
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Name", name);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I can load cards from a JSON", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -224,10 +240,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 26
+#line 27
 testRunner.When(string.Format("I create a card with name \'{0}\'", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 28
 testRunner.Then(string.Format("I can create that card with name \'{0}\'", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -241,7 +257,7 @@ testRunner.Then(string.Format("I can create that card with name \'{0}\'", name),
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "Shock")]
         public void ICanLoadCardsFromAJSON_Shock()
         {
-#line 25
+#line 26
 this.ICanLoadCardsFromAJSON("Shock", ((string[])(null)));
 #line hidden
         }
@@ -253,7 +269,7 @@ this.ICanLoadCardsFromAJSON("Shock", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "Counterspell")]
         public void ICanLoadCardsFromAJSON_Counterspell()
         {
-#line 25
+#line 26
 this.ICanLoadCardsFromAJSON("Counterspell", ((string[])(null)));
 #line hidden
         }
@@ -265,7 +281,7 @@ this.ICanLoadCardsFromAJSON("Counterspell", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "Llanowar Elves")]
         public void ICanLoadCardsFromAJSON_LlanowarElves()
         {
-#line 25
+#line 26
 this.ICanLoadCardsFromAJSON("Llanowar Elves", ((string[])(null)));
 #line hidden
         }

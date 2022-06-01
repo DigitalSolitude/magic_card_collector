@@ -19,7 +19,7 @@ namespace Utilities
                 name: "Shivan Dragon",
                 power: 5,
                 toughness: 5,
-                manaValue: new List<EManaType> { EManaType.Red, EManaType.Red, EManaType.Generic, EManaType.Generic, EManaType.Generic },
+                manaValue: new List<EManaType> { EManaType.Red, EManaType.Red, EManaType.Generic, EManaType.Generic, EManaType.Generic, EManaType.Generic },
                 cardType: ECardType.Creature,
                 oracleText: "R: {this card} gets +1/+0 until end of turn",
                 keywords: new List<EKeyWords> { EKeyWords.Flying }
@@ -30,6 +30,7 @@ namespace Utilities
             cardType: ECardType.Land,
             oracleText: "{T} Add {G}"
             );
+
     }
 
     public enum ELandType
