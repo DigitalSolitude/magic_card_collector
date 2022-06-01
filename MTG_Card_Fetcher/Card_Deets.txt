@@ -1,0 +1,23 @@
+Card features:
+
+Name - String
+Mana Cost - Class - Mana Cost Int/Char
+Picture - Not yet - Class?
+Card Type - Class - 
+Subtype - Class - 
+Rules - String
+Flavour Text - String
+Power - Int
+Toughness - Int
+Graveyard Ruling - Boolean
+Casting Speed - Boolean
+
+
+Attacking - Boolean
+Blocking - Boolean
+Combat Status - Class
+Visability - Boolean
+Tapped or Untapped - Boolean
+Does Untap - Boolean
+
+Stack Rulings - Stack
