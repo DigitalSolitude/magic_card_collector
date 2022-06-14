@@ -94,9 +94,10 @@ namespace MagicTests.StepDefinitions
         public void GivenIHaveATappedCard()
         {
             // Retrieve Battlefield from the scenario context 
-            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             // Create forest and put it into play
             ICard basicForest = DummyCards.BasicForest;
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
             battlefield.Cards.Add(basicForest);
             // Tap the forest
             battlefield.Tap(basicForest);
@@ -108,10 +109,11 @@ namespace MagicTests.StepDefinitions
         public void WhenIUntapThatCard()
         {
             // Retrieve Battlefield from the scenario context 
-            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             // Create forest and put it into play
             ICard basicForest = DummyCards.BasicForest;
             // Taps the forest
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
             battlefield.Untap(battlefield.Cards[battlefield.Cards.IndexOf(basicForest)]);
             // Update the battlefield in the scenario context
             _scenarioContext[nameof(battlefield)] = battlefield;
@@ -122,6 +124,7 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             // Create forest to find it on the battlefield
             ICard basicForest = DummyCards.BasicForest;
             ICard card = battlefield.Cards[battlefield.Cards.IndexOf(basicForest)];
@@ -134,7 +137,8 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
-            Player player1 = battlefield.PlayerList.FirstOrDefault();
+            Player player1 = GetPlayer1();
+
             // Add passed card to Player 1s hand
             player1._hand.Cards.Add(card);
             // Update the battlefield in the scenario context
@@ -146,7 +150,8 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
-            Player player1 = battlefield.PlayerList.FirstOrDefault();
+            Player player1 = GetPlayer1();
+
             // Add passed card to Player 1s hand
             player1._hand.Cards.Add(DummyCards.Shock);
             // Update the battlefield in the scenario context
@@ -158,6 +163,7 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             // Ensure Player 1 has the passed card in hand
             battlefield.PlayerList.FirstOrDefault()._hand.Cards.Should().Contain(card);
         }
@@ -167,6 +173,7 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             // Ensure Player 1 has the passed card in hand
             battlefield.PlayerList.FirstOrDefault()._hand.Cards.Count.Should().Be(count);
         }
@@ -175,8 +182,8 @@ namespace MagicTests.StepDefinitions
         public void GivenICheckTheTopCardOfMyLibrary()
         {
             // Retrieve Battlefield from the scenario context 
-            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
-            Player player1 = battlefield.PlayerList.FirstOrDefault();
+            Player player1 = GetPlayer1();
+
             ICard card = player1._library.Stack.Peek();
             _scenarioContext.Add(nameof(card), card);
         }
@@ -185,9 +192,9 @@ namespace MagicTests.StepDefinitions
         public void ThenThatCardIsInMyHand()
         {
             // Retrieve Battlefield from the scenario context 
-            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
             ICard card = _scenarioContext.Get<ICard>(nameof(card));
-            Player player1 = battlefield.PlayerList.FirstOrDefault();
+
             player1._hand.Cards.Should().Contain(card);
         }
 
@@ -196,27 +203,52 @@ namespace MagicTests.StepDefinitions
         {
             // Retrieve Battlefield from the scenario context 
             Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
-            Player player1 = battlefield.PlayerList.FirstOrDefault();
+            Player player1 = GetPlayer1();
+
             player1.DrawACard();
             _scenarioContext[nameof(battlefield)] = battlefield;
         }
 
         [Given(@"the card '([^']*)' is in hand")]
-        public void GivenTheCardIsInHand(string shock)
+        public void GivenTheCardIsInHand(string cardName)
         {
-            throw new PendingStepException();
+            // Retrieve Battlefield from the scenario context 
+            Player player1 = GetPlayer1();
+
+            player1._hand.Cards.Add(DummyCards.Shock);
         }
 
         [When(@"I discard that card")]
         public void WhenIDiscardThatCard()
         {
-            throw new PendingStepException();
+            // Retrieve Battlefield from the scenario context 
+            Player player1 = GetPlayer1();
+            player1.DiscardACard(DummyCards.Shock);
         }
+
+        private Player GetPlayer1()
+        {
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            return battlefield.PlayerList.FirstOrDefault();
+            
+        }
+
+        private ICard CreateCard(string cardName) =>
+            cardName.ToLower() switch
+            {
+                "shock" => DummyCards.Shock,
+                "shivan dragon" => DummyCards.ShivanDragon,
+                "basic forest" => DummyCards.BasicForest,
+                _ => throw new ArgumentException($"Unknown card {cardName}")
+            };
+
+
 
         [Then(@"that card is in my graveyard")]
         public void ThenThatCardIsInMyGraveyard()
         {
-            throw new PendingStepException();
+            Player player1 = GetPlayer1();
+            player1._graveyard.Cards.Should().Contain(CreateCard("shock"));
         }
 
         [Given(@"I have a '([^']*)' card in hand")]
@@ -274,14 +306,6 @@ namespace MagicTests.StepDefinitions
             throw new PendingStepException();
         }
 
-
-        [Given(@"I have an '([^']*)' card in my hand")]
-        public void GivenIHaveAnCardInMyHand(string sorcery)
-        {
-            throw new PendingStepException();
-        }
-
-
         [Given(@"there is a spell on the stack")]
         public void GivenThereIsASpellOnTheStack()
         {
@@ -296,6 +320,102 @@ namespace MagicTests.StepDefinitions
 
         [Then(@"I can counter that spell")]
         public void ThenICanCounterThatSpell()
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I have (.*) cards in hand")]
+        public void GivenIHaveCardsInHand(int p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I have (.*) cards in my library")]
+        public void GivenIHaveCardsInMyLibrary(int p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"the card '([^']*)' is in the graveyard")]
+        public void GivenTheCardIsInTheGraveyard(string shock)
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"I play a spell that returns that card to hand")]
+        public void WhenIPlayASpellThatReturnsThatCardToHand()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"the number of cards in hand is increased by '([^']*)'")]
+        public void ThenTheNumberOfCardsInHandIsIncreasedBy(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"the number of cards in the graveyard is decreased by '([^']*)'")]
+        public void ThenTheNumberOfCardsInTheGraveyardIsDecreasedBy(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I have a card in my hand that allowed me to play from exile")]
+        public void GivenIHaveACardInMyHandThatAllowedMeToPlayFromExile()
+        {
+            var card = CreateCard("shock");
+        }
+
+        [Then(@"I exile '([^']*)' number of cards from my hand")]
+        public void ThenIExileNumberOfCards(string x)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"I can play those card\(s\)")]
+        public void ThenICanPlayThoseCardS()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"I am the owner of those card\(s\)")]
+        public void ThenIAmTheOwnerOfThoseCardS()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"I am the controller of those card\(s\)")]
+        public void ThenIAmTheControllerOfThoseCardS()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"those card\(s\) are '([^']*)' card")]
+        public void ThenThoseCardSAreCard(string type)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"those card\(s\) are removed from exile after playing them")]
+        public void ThenThoseCardSAreRemovedFromExileAfterPlayingThem()
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I have a '([^']*)' card in my graveyard")]
+        public void GivenIHaveACardInMyGraveyard(string creature)
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"I play a spell that returns that card to the battlefield")]
+        public void WhenIPlayASpellThatReturnsThatCardToTheBattlefield()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"that card is not in my graveyard")]
+        public void ThenThatCardIsNotInMyGraveyard()
         {
             throw new PendingStepException();
         }

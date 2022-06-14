@@ -6,7 +6,7 @@ Game
 Scenario: Card has a name, mana cost, attributes and rules
 Given I have given a name
 When I press add
-Then the result should be the name on screen.
+Then the result should be the name on screen
 
 Scenario Outline: Check Card Properties
 Given I find a card called Shock

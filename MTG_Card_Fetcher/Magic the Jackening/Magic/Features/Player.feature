@@ -50,7 +50,7 @@ And the number of cards in the graveyard is decreased by '1'
 Scenario: Play a card from exile
 Given I have a card in my hand that allowed me to play from exile
 When  I play that card
-Then I exile 'X' number of cards
+Then I exile 'X' number of cards from my hand
 And I can play those card(s)
 And I am the owner of those card(s)
 And I am the controller of those card(s)
@@ -94,7 +94,7 @@ And I am the controller of that card
 And that card is a 'Instant' card
 
 Scenario: Play a sorcery card
-Given I have an 'Sorcery' card in my hand
+Given I have a 'Sorcery' card in my hand
 When I play that card
 Then that card is not in my hand
 And that card is on the stack
@@ -102,7 +102,7 @@ And I am the owner of that card
 And I am the controller of that card
 And that card is a 'Sorcery' card
 
-Scenario: I can interact with the stack
-Given there is a spell on the stack
-When I play a spell that counters that spell
-Then I can counter that spell
+#Scenario: I can interact with the stack
+#Given there is a spell on the stack
+#When I play a spell that counters that spell
+#Then I can counter that spell
