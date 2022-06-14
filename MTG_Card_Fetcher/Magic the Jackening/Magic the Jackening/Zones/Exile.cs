@@ -16,5 +16,13 @@ namespace Magic_the_Jackening.Zones
             Visibility = true;
             Cards = new List<ICard>();
         }
+
+        public ICard PlayCard(ICard cardName)
+        {
+            ICard card = Cards[Cards.IndexOf(cardName)];
+            Cards.Remove(card);
+            return card;
+        }
     }
+
 }

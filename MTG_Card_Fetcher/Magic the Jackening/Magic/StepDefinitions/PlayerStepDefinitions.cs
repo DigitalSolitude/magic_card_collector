@@ -272,7 +272,8 @@ namespace MagicTests.StepDefinitions
         [Then(@"that card is on the battlefield")]
         public void ThenThatCardIsOnTheBattlefield()
         {
-            throw new PendingStepException();
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            battlefield.Cards.Should().Contain(CreateCard("shock"));
         }
 
         [Then(@"I am the owner of that card")]
@@ -419,5 +420,46 @@ namespace MagicTests.StepDefinitions
         {
             throw new PendingStepException();
         }
+
+        [Given(@"the card '([^']*)' is in exile")]
+        public void GivenTheCardIsInExile(string cardName)
+        {
+            var player1 = GetPlayer1();
+            player1._exile.Cards.Add(CreateCard(cardName));
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            _scenarioContext[nameof(player1)] = player1;
+        }
+
+        [Given(@"I can cast that card")]
+        public void GivenICanCastThatCard()
+        {
+            var player1 = GetPlayer1();
+            foreach (var card in player1._exile.Cards)
+            {
+                if (card.Name.ToLower() == "shock") card.Playable = true;
+            }
+            _scenarioContext[nameof(player1)] = player1;
+        }
+
+        [When(@"I cast that card")]
+        public void WhenICastThatCard()
+        {
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            var player1 = GetPlayer1();
+            var shock = DummyCards.Shock;
+            battlefield.Cards.Add(battlefield.PlayerList[battlefield.PlayerList.IndexOf(player1)]._exile.PlayCard(shock));
+            battlefield.PlayerList[battlefield.PlayerList.IndexOf(player1)] = player1;
+            _scenarioContext[nameof(battlefield)] = battlefield;
+        }
+
+        [Then(@"that card is not in my exile zone")]
+        public void ThenThatCardIsNotInMyExileZone()
+        {
+            Battlefield battlefield = _scenarioContext.Get<Battlefield>(nameof(battlefield));
+            Player player1 = GetPlayer1();
+            player1 = battlefield.PlayerList[battlefield.PlayerList.IndexOf(player1)];
+            player1._exile.Cards.Should().NotContain(CreateCard("shock"));
+        }
+
     }
 }

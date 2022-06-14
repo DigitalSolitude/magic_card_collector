@@ -11,5 +11,9 @@ namespace Magic_the_Jackening.Zones
         public bool Visibility { get; set; }
         public List<ICard>? Cards { get; set; }
         public int timesCommanderCast { get; set; }
+        public ICard PlayCard(ICard card)
+        {
+            return Cards[Cards.IndexOf(card)];
+        }
     }
 }

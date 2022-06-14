@@ -16,5 +16,10 @@
             Cards.Remove(card);
             return card;
         }
+
+        public ICard PlayCard(ICard card)
+        {
+            return Cards[Cards.IndexOf(card)];
+        }
     }
 }

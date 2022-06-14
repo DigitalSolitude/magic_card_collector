@@ -44,26 +44,22 @@ Scenario: Return a card from the graveyard to hand
 Given the card 'Shock' is in the graveyard
 When I play a spell that returns that card to hand
 Then that card is in my hand
+And that card is not in my graveyard
 And the number of cards in hand is increased by '1'
 And the number of cards in the graveyard is decreased by '1'
 
 Scenario: Play a card from exile
-Given I have a card in my hand that allowed me to play from exile
-When  I play that card
-Then I exile 'X' number of cards from my hand
-And I can play those card(s)
-And I am the owner of those card(s)
-And I am the controller of those card(s)
-And those card(s) are 'Type' card
-And those card(s) are removed from exile after playing them
+Given the card 'Shock' is in exile
+And I can cast that card
+When I cast that card
+Then that card is on the battlefield
+And that card is not in my exile zone
 
 Scenario: Play a land card
 Given I have a 'Land' card in hand
 When I play that card
 Then that card is not in my hand
 And that card is on the battlefield
-And I am the owner of that card
-And I am the controller of that card
 And that card is a 'Land' card
 
 Scenario: Play a creature card
@@ -71,8 +67,6 @@ Given I have a 'Creature' card in my hand
 When I play that card
 Then that card is not in my hand
 And that card is on the battlefield
-And I am the owner of that card
-And I am the controller of that card
 And that card is a 'Creature' card
 
 Scenario: Return a creature card to the battlefield from the graveyard
@@ -80,8 +74,6 @@ Given I have a 'Creature' card in my graveyard
 When I play a spell that returns that card to the battlefield
 Then that card is not in my graveyard
 And that card is on the battlefield
-And I am the owner of that card
-And I am the controller of that card
 And that card is a 'Creature' card
 
 Scenario: Play an instant card
@@ -89,8 +81,6 @@ Given I have an 'Instant' card in my hand
 When I play that card
 Then that card is not in my hand
 And that card is on the stack
-And I am the owner of that card
-And I am the controller of that card
 And that card is a 'Instant' card
 
 Scenario: Play a sorcery card
@@ -98,8 +88,6 @@ Given I have a 'Sorcery' card in my hand
 When I play that card
 Then that card is not in my hand
 And that card is on the stack
-And I am the owner of that card
-And I am the controller of that card
 And that card is a 'Sorcery' card
 
 #Scenario: I can interact with the stack

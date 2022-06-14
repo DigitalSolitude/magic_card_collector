@@ -24,5 +24,10 @@
             if (card == null) throw new MagicExceptions.DrawFromEmptyLibrary();
             return card;
         }
+
+        public ICard PlayCard(ICard card)
+        {
+            return Cards[Cards.IndexOf(card)];
+        }
     }
 }

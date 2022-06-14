@@ -9,6 +9,7 @@ namespace Utilities
         public int Toughness { get; }
         public List<EKeyWords> KeyWords { get; }
         public List<EManaType> ManaCost { get; }
+        public bool Playable { get; set; }
         public ECardType CardType { get; }
         public ESubType SubType { get; }
         public string OracleText { get; }

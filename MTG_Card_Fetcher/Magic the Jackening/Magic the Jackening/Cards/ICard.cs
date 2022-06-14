@@ -5,7 +5,7 @@ namespace Magic_the_Jackening
     {
         string Name { get; }
         List<EManaType> ManaCost { get; }
-        bool Castable { get; set; }
+        bool Playable { get; set; }
         ECardType CardType { get; }
         ESubType SubType { get; }
         string OracleText { get; }
