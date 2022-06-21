@@ -36,7 +36,7 @@ namespace MagicTests.StepDefinitions
         public int cardsInLibrary => _library.Cards.Count;
         public int cardsInGraveyard => _graveyard.Cards.Count;
         public int cardsInExile => _exile.Cards.Count;
-        public void DrawACard() => _hand.Cards.Add(_library.TakeTopCard());
+        public void DrawACard() => _hand.Cards.Add(_library.DrawTopCard());
         public void DiscardACard(ICard card) => _graveyard.Cards.Add(_hand.Discard(card));
         public void AddMana(EManaType manaType)
         {

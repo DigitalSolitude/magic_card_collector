@@ -2,6 +2,9 @@
 
 Game
 
+Background: I am a player
+And I on a battlefield
+
 @JamesyGoringBaby
 Scenario: Card has a name, mana cost, attributes and rules
 Given I have given a name
@@ -16,11 +19,11 @@ Examples:
   | Shock | R         | Deal 2 damage to any target | Instant   | None    |
 
 Scenario: Draw Card
-Given I have 3 cards in hand
-And I have 50 cards in my library
+Given I have 3 cards in my 'hand'
+And I have 50 cards in my 'library'
 When I draw a card
-Then I have 4 cards in hand 
-And 49 cards in my library
+Then I have 4 cards in my 'hand' 
+And I have 49 cards in my 'library'
 
 
 
