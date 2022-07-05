@@ -346,38 +346,53 @@ namespace MagicTests.StepDefinitions
         public void GivenIHaveCardsInMy(int numberOfCards, EZone zone)
         {
             Player player1 = GetPlayer1();
-            switch(zone)
-            {
-                case EZone.Library:
-                    player1._library.Cards.Clear();
-                    AddCardsToZone(player1._library, numberOfCards);
-                    break;
-                case EZone.Hand:
-                    player1._hand.Cards.Clear();
-                    AddCardsToZone(player1._hand, numberOfCards);
-                    break;
-                case EZone.Graveyard:
-                    player1._graveyard.Cards.Clear();
-                    AddCardsToZone(player1._graveyard, numberOfCards);
-                    break;
-                case EZone.Exile:
-                    player1._exile.Cards.Clear();
-                    AddCardsToZone(player1._exile, numberOfCards);
-                    break;
-                case EZone.Battlefield:
-                    throw new ArgumentException($"Zone {zone} cannot be cleared");
-                default:
-                    throw new ArgumentException($"Default");
-
-            }
+            EmptyAllZones(player1);
+            AddCardsToZone(zone, numberOfCards);
         }
 
-        private void AddCardsToZone(IZone zone, int numberOfCards)
+        private static void EmptyAllZones(Player player1)
+        {
+            player1._library.Cards.Clear();
+            player1._hand.Cards.Clear();
+            player1._graveyard.Cards.Clear();
+            player1._exile.Cards.Clear();
+        }
+
+        private void AddCardsToZone(EZone zone, int numberOfCards)
         {
             Player player1 = GetPlayer1();
-            for (int i = 0; i < numberOfCards; i++)
             {
-                player1._zones[player1._zones.IndexOf(zone)].Cards.Add(CreateCard("shock"));
+                switch (zone)
+                {
+                    case EZone.Library:
+                        for (int i = 0; i < numberOfCards; i++)
+                        {
+                            player1._library.Cards.Add(DummyCards.Shock);
+                        }
+                        break;
+                    case EZone.Hand:
+                        for (int i = 0; i < numberOfCards; i++)
+                        {
+                            player1._hand.Cards.Add(DummyCards.Shock);
+                        }
+                        break;
+                    case EZone.Graveyard:
+                        for (int i = 0; i < numberOfCards; i++)
+                        {
+                            player1._graveyard.Cards.Add(DummyCards.Shock);
+                        }
+                        break;
+                    case EZone.Exile:
+                        for (int i = 0; i < numberOfCards; i++)
+                        {
+                            player1._exile.Cards.Add(DummyCards.Shock);
+                        }
+                        break;
+                    case EZone.Battlefield:
+                        throw new ArgumentException($"Zone {zone} cannot be cleared");
+                    default:
+                        throw new ArgumentException($"Default");
+                }
             }
         }
 

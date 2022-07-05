@@ -6,7 +6,6 @@ namespace MagicTests.StepDefinitions
     public class Player
     {
         public string _name;
-        public List<IZone> _zones = new();
         public Library _library;
         public Hand _hand;
         public Exile _exile;
@@ -23,11 +22,6 @@ namespace MagicTests.StepDefinitions
             _exile = new Exile();
             _graveyard = new Graveyard();
             _commandZone = new CommandZone();
-            _zones.Add(_library);
-            _zones.Add(_hand);
-            _zones.Add(_exile);
-            _zones.Add(_graveyard);
-            _zones.Add(_commandZone);
 
             life = 40;
         }
