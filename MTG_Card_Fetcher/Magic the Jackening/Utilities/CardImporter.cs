@@ -21,7 +21,7 @@ namespace Utilities
             }
             return ConvertCards(cards);
         }
-
+        
         private List<ICard> ConvertCards(List<ICard> cards)
         {
             List<ICard> trimmedCards = new List<ICard>();

@@ -4,7 +4,7 @@ using System.Linq;
 namespace MagicTests.StepDefinitions
 {
     // Something of a master class for now
-    internal class Battlefield
+    public class Battlefield
     {
         public List<Player>? PlayerList;
         public List<ICard>? Cards;
@@ -30,7 +30,7 @@ namespace MagicTests.StepDefinitions
             return zones;
         }
 
-        internal void AddPlayer(Player player)
+        public void AddPlayer(Player player)
         {
             PlayerList.Add(player);
             Zones = GetZones();
@@ -42,12 +42,12 @@ namespace MagicTests.StepDefinitions
             Zones = GetZones();
         }
 
-        internal void Tap(ICard card)
+        public void Tap(ICard card)
         {
             card.isTapped = true;
         }
 
-        internal void Untap(ICard card)
+        public void Untap(ICard card)
         {
             card.isTapped = false;
         }
