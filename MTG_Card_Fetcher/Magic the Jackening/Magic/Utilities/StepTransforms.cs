@@ -53,5 +53,16 @@ namespace Magic.Support
             if (subType == "None") return null;
             throw new ArgumentException($"Invalid subType {subType} is not supported.");
         }
+
+        public EZone ZoneTypeTransform(string zone)
+        {
+            zone = zone.ToLower();
+            if (zone == "exile") return EZone.Exile;
+            if (zone == "library") return EZone.Library;
+            if (zone == "hand") return EZone.Hand;
+            if (zone == "graveyard") return EZone.Graveyard;
+            if (zone == "battlefield") return EZone.Battlefield;
+            throw new ArgumentException($"Invalid Zone {zone} is not supported.");
+        }
     }
 }

@@ -209,6 +209,23 @@ namespace MagicTests.StepDefinitions
             _scenarioContext[nameof(battlefield)] = battlefield;
         }
 
+        [Then(@"I have (.*) cards in hand")]
+        public void ThenIHaveCardsInHand(int cardsInHand)
+        {
+            Player player1 = GetPlayer1();
+
+            // I think this is checking the number of cards in our hand and making sure it is equal to cardsInHand
+            player1._hand.Cards.Should().HaveCount(cardsInHand);
+
+        }
+
+        [Then(@"(.*) cards in my library")]
+        public void ThenCardsInMyLibrary(int cardsInLibrary)
+        {
+            Player player1 = GetPlayer1();
+            player1.cardsInLibrary.Should().Be(cardsInLibrary);
+        }
+
         [Given(@"the card '([^']*)' is in hand")]
         public void GivenTheCardIsInHand(string cardName)
         {
@@ -325,16 +342,56 @@ namespace MagicTests.StepDefinitions
             throw new PendingStepException();
         }
 
-        [Given(@"I have (.*) cards in hand")]
-        public void GivenIHaveCardsInHand(int p0)
+        [Given(@"I have (.*) cards in my '([^']*)'")]
+        public void GivenIHaveCardsInMy(int numberOfCards, EZone zone)
         {
-            throw new PendingStepException();
+            Player player1 = GetPlayer1();
+            switch(zone)
+            {
+                case EZone.Library:
+                    player1._library.Cards.Clear();
+                    AddCardsToZone(player1._library, numberOfCards);
+                    break;
+                case EZone.Hand:
+                    player1._hand.Cards.Clear();
+                    AddCardsToZone(player1._hand, numberOfCards);
+                    break;
+                case EZone.Graveyard:
+                    player1._graveyard.Cards.Clear();
+                    AddCardsToZone(player1._graveyard, numberOfCards);
+                    break;
+                case EZone.Exile:
+                    player1._exile.Cards.Clear();
+                    AddCardsToZone(player1._exile, numberOfCards);
+                    break;
+                case EZone.Battlefield:
+                    throw new ArgumentException($"Zone {zone} cannot be cleared");
+                default:
+                    throw new ArgumentException($"Default");
+
+            }
+        }
+
+        private void AddCardsToZone(IZone zone, int numberOfCards)
+        {
+            Player player1 = GetPlayer1();
+            for (int i = 0; i < numberOfCards; i++)
+            {
+                player1._zones[player1._zones.IndexOf(zone)].Cards.Add(CreateCard("shock"));
+            }
+        }
+
+        [Given(@"I have (.*) cards in hand")]
+        public void GivenIHaveCardsInHand(int cardsInHand)
+        {
+
         }
 
         [Given(@"I have (.*) cards in my library")]
-        public void GivenIHaveCardsInMyLibrary(int p0)
+        public void GivenIHaveCardsInMyLibrary(int cardsInLibrary)
         {
-            throw new PendingStepException();
+            Player player1 = GetPlayer1();
+            player1._library.Cards.Clear();
         }
 
         [Given(@"the card '([^']*)' is in the graveyard")]

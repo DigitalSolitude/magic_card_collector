@@ -18,7 +18,7 @@
             return (Stack<ICard>)list.Cast<ICard>();
         }
 
-        public ICard TakeTopCard()
+        public ICard DrawTopCard()
         {
             _ = Stack.TryPop(out var card);
             if (card == null) throw new MagicExceptions.DrawFromEmptyLibrary();
